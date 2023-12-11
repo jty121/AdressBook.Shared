@@ -74,7 +74,20 @@ public class AdressBookMenuServices
 
     private void ShowAllContacts()
     {
-
+        var contacts = _contactBookServices.GetAllContactsFromList();
+        foreach (var contact in contacts)
+        {
+            if(contact is ContactPerson)
+            {
+                Console.WriteLine($"{contact.FirstName}, {contact.LastName}, {contact.Email}, {contact.Address}, {contact.PhoneNumber}");
+            }
+            else
+            {
+                Console.WriteLine("Couldn´t find any information, are you sure you entered right email?");
+                Console.WriteLine("Press any key to continue...")
+            }
+        }
+        Console.ReadKey();
     }
 
     private void ShowContact()
