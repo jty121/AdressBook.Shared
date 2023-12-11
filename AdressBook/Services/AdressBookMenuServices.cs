@@ -84,7 +84,7 @@ public class AdressBookMenuServices
             else
             {
                 Console.WriteLine("Couldn´t find any information, are you sure you entered right email?");
-                Console.WriteLine("Press any key to continue...")
+                Console.WriteLine("Press any key to continue...");
             }
         }
         Console.ReadKey();
@@ -92,7 +92,21 @@ public class AdressBookMenuServices
 
     private void ShowContact()
     {
+        Console.WriteLine("Enter email of contact to get full contactinformation: ");
+        string findContactByEmail = Console.ReadLine()!;
+        var contact = _contactBookServices.GetContactPersonByEmail(findContactByEmail);
 
+        if(contact != null)
+        {
+            Console.WriteLine($"{contact.FirstName}, {contact.LastName}, {contact.Email}, {contact.Address}, {contact.PhoneNumber}");
+        }
+        else
+        {
+            Console.WriteLine("Couldn´t find any information, are you sure you entered right email?");
+            Console.WriteLine("Press any key to continue...");
+        }
+
+        Console.ReadKey();
     }
 
     private void DeleteContact()
