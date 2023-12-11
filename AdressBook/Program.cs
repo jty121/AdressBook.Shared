@@ -1,1 +1,4 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using AdressBook.Services;
+
+var AdressBookMenuServices = new AdressBookMenuServices();
+AdressBookMenuServices.ShowMainMenu();

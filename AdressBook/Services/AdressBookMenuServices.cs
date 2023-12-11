@@ -1,4 +1,5 @@
 ﻿using AdressBook.Shared.Interfaces;
+using AdressBook.Shared.Models;
 using AdressBook.Shared.Services;
 namespace AdressBook.Services;
 public class AdressBookMenuServices
@@ -50,7 +51,25 @@ public class AdressBookMenuServices
 
     private void AddContact()
     {
+        ContactPerson contactPerson = new ContactPerson();
 
+        Console.WriteLine("Enter firstname: ");
+        contactPerson.FirstName = Console.ReadLine()!;
+
+        Console.WriteLine("Enter lastname: ");
+        contactPerson.LastName = Console.ReadLine()!;
+
+        Console.WriteLine("Enter email: ");
+        contactPerson.Email = Console.ReadLine()!;
+
+        Console.WriteLine("Enter Adress: ");
+        contactPerson.Address = Console.ReadLine()!;
+
+        Console.WriteLine("Enter Phonenumber: ");
+        contactPerson.PhoneNumber = Console.ReadLine()!;
+
+        _contactBookServices.AddContactToList(contactPerson);
+        Console.ReadKey();
     }
 
     private void ShowAllContacts()
