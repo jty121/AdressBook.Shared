@@ -4,7 +4,6 @@ using AdressBook.Shared.Services;
 namespace AdressBook.Services;
 public class AdressBookMenuServices
 {
-
     private readonly IContactBookServices _contactBookServices = new ContactBookServices();
   
 
@@ -13,13 +12,13 @@ public class AdressBookMenuServices
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("*** Addressbook ***");
+            Console.WriteLine("*** The Address book ***");
             Console.WriteLine();
             Console.WriteLine("Choose an option from the menu");
             Console.WriteLine("1. Add a contact");
             Console.WriteLine("2. Show all contacts");
-            Console.WriteLine("3. Search for a contact");
-            Console.WriteLine("4. Delete contact from the addressbook");
+            Console.WriteLine("3. Search for contact in address book");
+            Console.WriteLine("4. Delete contact");
             Console.WriteLine("5. Exit");
             Console.WriteLine();
             string option = Console.ReadLine()!;
@@ -42,7 +41,7 @@ public class AdressBookMenuServices
                     ShowExit();
                     break;
                 default: Console.WriteLine("Invalid option, press any key to continue..");
-                    break;                  
+                    break;
             }        
         }
     }
@@ -57,16 +56,18 @@ public class AdressBookMenuServices
         Console.WriteLine("Enter lastname: ");
         contactPerson.LastName = Console.ReadLine()!;
 
-        Console.WriteLine("Enter email: ");
+        Console.WriteLine("Enter amail: ");
         contactPerson.Email = Console.ReadLine()!;
 
-        Console.WriteLine("Enter Adress: ");
+        Console.WriteLine("Enter address: ");
         contactPerson.Address = Console.ReadLine()!;
 
-        Console.WriteLine("Enter Phonenumber: ");
+        Console.WriteLine("Enter phonenumber: ");
         contactPerson.PhoneNumber = Console.ReadLine()!;
 
         _contactBookServices.AddContactToList(contactPerson);
+
+        Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
@@ -77,33 +78,32 @@ public class AdressBookMenuServices
         {
             if(contact is ContactPerson)
             {
-                Console.WriteLine($"{contact.FirstName}, {contact.LastName}, {contact.Email}, {contact.Address}, {contact.PhoneNumber}");
+                Console.WriteLine("- " +$" {contact.FirstName}\n   {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
             }
             else
             {
                 Console.WriteLine("Couldn´t find any information, are you sure you entered right email?");
-                Console.WriteLine("Press any key to continue...");
             }
         }
+        Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
     private void ShowContact()
     {
-        Console.WriteLine("Enter email of contact to get full contactinformation: ");
+        Console.WriteLine("Enter contacts email to get contactinformation: ");
         string findContactByEmail = Console.ReadLine()!;
         var contact = _contactBookServices.GetContactPersonByEmail(findContactByEmail);
 
         if(contact != null)
         {
-            Console.WriteLine($"{contact.FirstName}, {contact.LastName}, {contact.Email}, {contact.Address}, {contact.PhoneNumber}");
+            Console.WriteLine("- " +$" {contact.FirstName}\n    {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
         }
         else
         {
-            Console.WriteLine("Couldn´t find any information, are you sure you entered right email?");
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Couldn´t find any information, are you sure you entered right email?"); 
         }
-
+        Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
@@ -123,11 +123,13 @@ public class AdressBookMenuServices
             }
             else
             {
-                Console.WriteLine("Couldn´t find any contact with that email in list!");
+                Console.WriteLine("Couldn´t find any contact with that email in address book!");
             }
         }
+        Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
+
     private void ShowExit()
     {
         Console.Write("Are you sure you want to quit? y/n: ");

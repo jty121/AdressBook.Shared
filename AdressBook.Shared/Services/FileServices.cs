@@ -32,3 +32,5 @@ public class FileServices : IFileServices
         return false;
     }
 }
+// string filePath talar om för metoden att "du kommer få en sökväg till platsen som filen ska sparas".
+// string contacts skickar med något ihop med sökvägen som ska sparas in

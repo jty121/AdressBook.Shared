@@ -33,6 +33,7 @@ public class ContactBookServices : IContactBookServices
         return false;
     }
 
+
     public bool DeleteContactFromList(string email)
     {
         try
@@ -48,12 +49,13 @@ public class ContactBookServices : IContactBookServices
                     });
                     var result = _fileServices.SaveContactsToFile(@"C:\CsharpProjects\Assignment\AdressBook.json", json);
                     return result;
-                // hämtar upp den uppdaterade listan om kontakten tagits bort
-            } 
+                // return result ger tillbaka den uppdaterade listan OM kontakten tagits bort
+            }
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;
     }
+
 
     public IEnumerable<ContactPerson> GetAllContactsFromList()
     {
@@ -73,6 +75,7 @@ public class ContactBookServices : IContactBookServices
         return null!;
     }
 
+
     public IContactPerson GetContactPersonByEmail(string email)
     {
         try
@@ -91,6 +94,7 @@ public class ContactBookServices : IContactBookServices
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return null!; 
     }
+
 
     public bool UpdateContactList(IEnumerable<IContactPerson> contactPersons)
     {
