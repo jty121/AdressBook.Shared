@@ -37,14 +37,19 @@ public class ContactBookServices : IContactBookServices
     {
         try
         {
-            if(email != null) 
-            {
-                var contactToDelete = _contacts.Find(x => x.Email == email);
-                if(contactToDelete != null)
+            var contactToDelete = _contacts.Find(x => x.Email == email);
+
+            if (contactToDelete != null)
                 {
                     _contacts.Remove(contactToDelete);
-                }
-            }
+                    string json = JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All,
+                    });
+                    var result = _fileServices.SaveContactsToFile(@"C:\CsharpProjects\Assignment\AdressBook.json", json);
+                    return result;
+                // hämtar upp den uppdaterade listan om kontakten tagits bort
+            } 
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return false;

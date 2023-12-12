@@ -11,7 +11,8 @@ public class FileServices : IFileServices
         { 
             if(File.Exists(filePath))
             {
-                return File.ReadAllText(filePath);
+                string json =  File.ReadAllText(filePath);
+                return json;
             }
 
         }

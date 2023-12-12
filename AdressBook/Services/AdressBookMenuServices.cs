@@ -6,22 +6,20 @@ public class AdressBookMenuServices
 {
 
     private readonly IContactBookServices _contactBookServices = new ContactBookServices();
-    /// <summary>
-    /// Main menu, implement methods/logic from AdressBook.shared
-    /// </summary>
+  
 
     public void ShowMainMenu()
     {
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("*** Adressbook ***");
+            Console.WriteLine("*** Addressbook ***");
             Console.WriteLine();
             Console.WriteLine("Choose an option from the menu");
             Console.WriteLine("1. Add a contact");
             Console.WriteLine("2. Show all contacts");
             Console.WriteLine("3. Search for a contact");
-            Console.WriteLine("4. Delete a contact from the adressbook");
+            Console.WriteLine("4. Delete contact from the addressbook");
             Console.WriteLine("5. Exit");
             Console.WriteLine();
             string option = Console.ReadLine()!;
@@ -111,10 +109,37 @@ public class AdressBookMenuServices
 
     private void DeleteContact()
     {
+        Console.WriteLine("Enter email of contact you want to delete from the adressbook: ");
+        string deleteContactByEmail = Console.ReadLine()!;
 
+        var deleteContact = _contactBookServices.DeleteContactFromList(deleteContactByEmail);
+
+        if (!string.IsNullOrEmpty(deleteContactByEmail)) 
+        {
+
+            if(deleteContact)
+            {
+                Console.WriteLine($"contact with email: {deleteContactByEmail} is deleted from list!");
+            }
+            else
+            {
+                Console.WriteLine("Couldn´t find any contact with that email in list!");
+            }
+        }
+        Console.ReadKey();
     }
     private void ShowExit()
     {
+        Console.Write("Are you sure you want to quit? y/n: ");
+        var option = Console.ReadLine()!;
 
+        if (option.ToLower() == "y")
+        {
+            Environment.Exit(5);
+        }
+        else option.Equals("n", StringComparison.CurrentCultureIgnoreCase);
+        {
+            ShowMainMenu();
+        }
     }
 }
