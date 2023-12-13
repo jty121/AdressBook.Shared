@@ -32,5 +32,7 @@ public class FileServices : IFileServices
         return false;
     }
 }
-// string filePath talar om för metoden att "du kommer få en sökväg till platsen som filen ska sparas".
-// string contacts skickar med något ihop med sökvägen som ska sparas in
+// string filePath talar om för metoden att "du kommer få en sökväg till platsen som filen ska sparas på".
+// string contacts sätts för att ta emot listan som ett argument in i metoden, alltså kan man skapa flera olika 
+// listor för att spara olika saker, men ändå använda samma metod. string contacts är bara satt som ett generellt namn
+// min lista kommer skickas som ett argument med in genom string contacts.

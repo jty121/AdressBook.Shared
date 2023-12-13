@@ -61,15 +61,13 @@ public class ContactBookServices : IContactBookServices
     {
         try
         {
-            var contact = _fileServices.GetContactsFromFile(@"C:\CsharpProjects\Assignment\AdressBook.json");
-            if(!string.IsNullOrEmpty(contact))
+            var contacts = _fileServices.GetContactsFromFile(@"C:\CsharpProjects\Assignment\AdressBook.json");
+            if(!string.IsNullOrEmpty(contacts))
             {
-                _contacts = JsonConvert.DeserializeObject<List<ContactPerson>>(contact, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All
-                })!;
+                _contacts = JsonConvert.DeserializeObject<List<ContactPerson>>(contacts)!;
                 return _contacts;
             }
+               
         }
         catch (Exception ex) { Debug.WriteLine(ex.Message); }
         return null!;
@@ -87,6 +85,7 @@ public class ContactBookServices : IContactBookServices
 
                 if( contactToFind != null)
                 {
+                    _contacts = JsonConvert.DeserializeObject<List<ContactPerson>>(contact)!;
                     return contactToFind;
                 }
             }
