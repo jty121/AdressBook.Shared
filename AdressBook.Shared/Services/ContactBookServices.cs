@@ -10,7 +10,9 @@ public class ContactBookServices : IContactBookServices
 
     private static List<ContactPerson> _contacts = [];
     private readonly IFileServices _fileServices = new FileServices();
-
+    private readonly string _filePath = @"C:\CsharpProjects\Assignment\AdressBook.json";
+    //sätt sökväg här för att säkerställa att när du använder dig av _filePath så kommer det alltid att bli samma i resterande kod. 
+    //går att ha flera olika sökvägar om man har olika objekt som ska sparas in i separata listor. 
 
     public bool AddContactToList(ContactPerson contactPerson)
     {
@@ -24,7 +26,7 @@ public class ContactBookServices : IContactBookServices
                 {
                     TypeNameHandling = TypeNameHandling.All,
                 });
-                var result = _fileServices.SaveContactsToFile(@"C:\CsharpProjects\Assignment\AdressBook.json", json);
+                var result = _fileServices.SaveContactsToFile(_filePath, json);
                 return result;
             }
 
@@ -47,7 +49,7 @@ public class ContactBookServices : IContactBookServices
                     {
                         TypeNameHandling = TypeNameHandling.All,
                     });
-                    var result = _fileServices.SaveContactsToFile(@"C:\CsharpProjects\Assignment\AdressBook.json", json);
+                    var result = _fileServices.SaveContactsToFile(_filePath, json);
                     return result;
                 // return result ger tillbaka den uppdaterade listan OM kontakten tagits bort
             }
@@ -61,7 +63,7 @@ public class ContactBookServices : IContactBookServices
     {
         try
         {
-            var contacts = _fileServices.GetContactsFromFile(@"C:\CsharpProjects\Assignment\AdressBook.json");
+            var contacts = _fileServices.GetContactsFromFile(_filePath);
             if(!string.IsNullOrEmpty(contacts))
             {
                 _contacts = JsonConvert.DeserializeObject<List<ContactPerson>>(contacts)!;
@@ -71,6 +73,7 @@ public class ContactBookServices : IContactBookServices
         }
         catch (Exception ex) { Debug.WriteLine("ContactBookServices - GetAllContactsFromList::" + ex.Message); }
         return null!;
+        //sätt meddelande i din exception del för att lättare kunna felsöka om något går fel, skrivs ut i output
     }
 
 
@@ -80,13 +83,15 @@ public class ContactBookServices : IContactBookServices
         {
             if(email != null)
             {
-                var contact = _fileServices.GetContactsFromFile(@"C:\CsharpProjects\Assignment\AdressBook.json");
+                var contact = _fileServices.GetContactsFromFile(_filePath);
                 var contactToFind = _contacts.Find(x =>x.Email == email);
 
                 if( contactToFind != null)
                 {
                     _contacts = JsonConvert.DeserializeObject<List<ContactPerson>>(contact)!;
                     return contactToFind;
+                    //om man inte har en lista som är av ett Interface, behövs inte settings delen och typenamehandling? 
+                    //Json kan inte hantera Interfaces 
                 }
             }
         }

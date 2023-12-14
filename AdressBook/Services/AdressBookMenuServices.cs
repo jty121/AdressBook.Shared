@@ -82,17 +82,17 @@ public class AdressBookMenuServices
         
         IEnumerable<ContactPerson> contacts = _contactBookServices.GetAllContactsFromList();
         //instansiering av IEnumerable lista av klass ContactPerson och anropar metoden GetAllContactsFromList i contactBookServices.
-        foreach (var contact in contacts)
-            {
-                if(contact is ContactPerson)
+            foreach (var contact in contacts)
                 {
-                    Console.WriteLine("- " +$" {contact.FirstName}\n   {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
+                if (contact is ContactPerson)
+                    {
+                        Console.WriteLine("- " +$" {contact.FirstName}\n   {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Couldn´t find any information, please try again!");
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Couldn´t find any information, please try again!");
-                }
-            }
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
@@ -131,7 +131,8 @@ public class AdressBookMenuServices
 
                 if(deleteContact)
                 {
-                    Console.WriteLine($"contact with email: {deleteContactByEmail} deleted!");
+                    Console.WriteLine();
+                    Console.WriteLine($"contact with email: {deleteContactByEmail} deleted successfully!");
                 }
                 else
                 {
