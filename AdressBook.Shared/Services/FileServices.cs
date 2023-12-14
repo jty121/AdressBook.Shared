@@ -16,7 +16,7 @@ public class FileServices : IFileServices
             }
 
         }
-        catch (Exception ex){ Debug.WriteLine(ex.Message); }
+        catch (Exception ex){ Debug.WriteLine("Fileservices - GetContactsFromFile::" + ex.Message); }
         return null!;
     }
 
@@ -28,7 +28,7 @@ public class FileServices : IFileServices
             sw.Write(contacts);
             return true;
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) { Debug.WriteLine("Fileservices - SaveContactsToFile::" + ex.Message); }
         return false;
     }
 }

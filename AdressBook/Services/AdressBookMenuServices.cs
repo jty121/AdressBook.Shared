@@ -15,11 +15,12 @@ public class AdressBookMenuServices
             Console.WriteLine("*** The Address book ***");
             Console.WriteLine();
             Console.WriteLine("Choose an option from the menu");
-            Console.WriteLine("1. Add a contact");
-            Console.WriteLine("2. Show all contacts");
-            Console.WriteLine("3. Search for contact in address book");
-            Console.WriteLine("4. Delete contact");
-            Console.WriteLine("5. Exit");
+            Console.WriteLine(
+                "\n1. Add a contact" +
+                "\n2. Show all contacts" + 
+                "\n3. Search for a contact" +
+                "\n4. Delete contact" +
+                "\n5. Exit");
             Console.WriteLine();
             string option = Console.ReadLine()!;
 
@@ -45,15 +46,13 @@ public class AdressBookMenuServices
             }        
         }
     }
-    // privata fält här, behöver bara kommas åt i den här klassen.
+    
     private void AddContact()
     {
-        //instansiering av ny person från klassen ContactPerson, ger tillgång till properties för att lagra värdena i variabel contactPerson. 
+        //instansiering av ny person från klassen ContactPerson, ger tillgång till properties för att lagra värden i variabeln contactPerson. 
         ContactPerson contactPerson = new ContactPerson();
-        Console.Clear();
-        Console.WriteLine("*** Add a contact to your address book ***");
-        Console.WriteLine();
 
+        MenuTitle("*** Add a contact to your address book ***");
         Console.WriteLine("Firstname: ");
         contactPerson.FirstName = Console.ReadLine()!;
 
@@ -78,84 +77,91 @@ public class AdressBookMenuServices
     }
 
     private void ShowAllContacts()
-    {   
-        //instansiering av IEnumerable lista av klass ContactPerson och anropar metoden GetAllContactsFromList i contactBookServices.
+    {
+        MenuTitle("All contacts in Address Book");
+        
         IEnumerable<ContactPerson> contacts = _contactBookServices.GetAllContactsFromList();
+        //instansiering av IEnumerable lista av klass ContactPerson och anropar metoden GetAllContactsFromList i contactBookServices.
         foreach (var contact in contacts)
-        {
-            if(contact is ContactPerson)
             {
-                Console.WriteLine("- " +$" {contact.FirstName}\n   {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
+                if(contact is ContactPerson)
+                {
+                    Console.WriteLine("- " +$" {contact.FirstName}\n   {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
+                }
+                else
+                {
+                    Console.WriteLine("Couldn´t find any information, please try again!");
+                }
             }
-            else
-            {
-                Console.WriteLine("Couldn´t find any information, please try again!");
-            }
-        }
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
     private void ShowContact()
     {
-        Console.Clear();
-        Console.WriteLine("*** Search for contact in Address book ***");
-        Console.WriteLine();
+        MenuTitle("Search for contact in the Address book");
         Console.WriteLine("Enter contacts email to view information: ");
+
         string findContactByEmail = Console.ReadLine()!;
         var contact = _contactBookServices.GetContactPersonByEmail(findContactByEmail);
 
-        if(contact != null)
-        {
-            Console.WriteLine("- " +$" {contact.FirstName}\n    {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
-        }
-        else
-        {
-            Console.WriteLine("Couldn´t find any information, please try again!"); 
-        }
+            if(contact != null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("- " +$" {contact.FirstName}\n    {contact.LastName}\n   {contact.Email}\n   {contact.Address}\n   {contact.PhoneNumber}\n");
+            }
+            else
+            {
+                Console.WriteLine("Couldn´t find any information, please try again!"); 
+            }
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
     private void DeleteContact()
     {
-        Console.Clear();
-        Console.WriteLine("*** Delete contact from Address book ***");
-        Console.WriteLine();
+        MenuTitle("Delete contact from Address book");
         Console.WriteLine("Enter email of contact to remove: ");
         string deleteContactByEmail = Console.ReadLine()!;
 
         var deleteContact = _contactBookServices.DeleteContactFromList(deleteContactByEmail);
 
-        if (!string.IsNullOrEmpty(deleteContactByEmail)) 
-        {
+            if (!string.IsNullOrEmpty(deleteContactByEmail)) 
+            {
 
-            if(deleteContact)
-            {
-                Console.WriteLine($"contact with email: {deleteContactByEmail} deleted!");
+                if(deleteContact)
+                {
+                    Console.WriteLine($"contact with email: {deleteContactByEmail} deleted!");
+                }
+                else
+                {
+                    Console.WriteLine("Couldn´t find any contact, please try again!");
+                }
             }
-            else
-            {
-                Console.WriteLine("Couldn´t find any contact with that email address, try again please!");
-            }
-        }
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
     }
 
     private void ShowExit()
     {
-        Console.Clear();
+        MenuTitle("Exit Address Book");
         Console.Write("Are you sure you want to quit? y/n: ");
         var option = Console.ReadLine()!;
 
-        if (option.ToLower() == "y")
-        {
-            Environment.Exit(5);
-        }
-        else option.Equals("n", StringComparison.CurrentCultureIgnoreCase);
-        {
-            ShowMainMenu();
-        }
+            if (option.ToLower() == "y")
+            {
+                Environment.Exit(5);
+            }
+            else option.Equals("n", StringComparison.CurrentCultureIgnoreCase);
+            {
+                ShowMainMenu();
+            }
     }
+    private void MenuTitle(string title)
+    {
+        Console.Clear();
+        Console.WriteLine($"*** {title} ***");
+        Console.WriteLine();
+    }
+    
 }

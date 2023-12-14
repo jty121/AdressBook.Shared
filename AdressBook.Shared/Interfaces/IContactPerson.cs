@@ -1,7 +1,7 @@
 ﻿namespace AdressBook.Shared.Interfaces;
 
 /// <summary>
-/// Kontrakt för vilka egenskaper som definierar och ska ingå för en kontaktperson
+/// Kontrakt för vilka egenskaper/properties som definierar och ska ingå för en kontaktperson
 /// </summary>
 public interface IContactPerson
 {

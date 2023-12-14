@@ -29,7 +29,7 @@ public class ContactBookServices : IContactBookServices
             }
 
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) { Debug.WriteLine("ContactBookServices - AddContactToList::" + ex.Message); }
         return false;
     }
 
@@ -52,7 +52,7 @@ public class ContactBookServices : IContactBookServices
                 // return result ger tillbaka den uppdaterade listan OM kontakten tagits bort
             }
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) { Debug.WriteLine("ContactBookServices - DeleteContactFromFile::" + ex.Message); }
         return false;
     }
 
@@ -69,7 +69,7 @@ public class ContactBookServices : IContactBookServices
             }
                
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) { Debug.WriteLine("ContactBookServices - GetAllContactsFromList::" + ex.Message); }
         return null!;
     }
 
@@ -90,7 +90,7 @@ public class ContactBookServices : IContactBookServices
                 }
             }
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) { Debug.WriteLine("ContactBookServices - GetContactPersonByEmail::" + ex.Message); }
         return null!; 
     }
 
@@ -101,7 +101,7 @@ public class ContactBookServices : IContactBookServices
         {
             return true;
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
+        catch (Exception ex) { Debug.WriteLine("ContactBookServices - UpdateContactList::" + ex.Message); }
         return false;
     }
 }

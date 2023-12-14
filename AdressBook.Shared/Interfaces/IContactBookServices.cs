@@ -15,7 +15,7 @@ public interface IContactBookServices
     /// <summary>
     /// Get a specified contact by email from list
     /// </summary>
-    /// <param name="email">enter as a string, refers to object in class</param>
+    /// <param name="email">enter as a string</param>
     /// <returns>if contact email exists return information about contact, else return null if failed</returns>
     IContactPerson GetContactPersonByEmail(string email);
 
