@@ -74,6 +74,7 @@ public class ContactBookServices : IContactBookServices
         catch (Exception ex) { Debug.WriteLine("ContactBookServices - GetAllContactsFromList::" + ex.Message); }
         return null!;
         //sätt meddelande i din exception del för att lättare kunna felsöka om något går fel, skrivs ut i output
+        //lättare att kolla om du får ett error-message, då står det i vilken del av din kod som felet uppstått i
     }
 
 
