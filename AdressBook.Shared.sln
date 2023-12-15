@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdressBook.Shared", "AdressBook.Shared\AdressBook.Shared.csproj", "{035FB2AE-CC4C-4EE9-B20C-83DF599E4097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdressBook.Shared", "AdressBook.Shared\AdressBook.Shared.csproj", "{035FB2AE-CC4C-4EE9-B20C-83DF599E4097}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdressBook", "AdressBook\AdressBook.csproj", "{6991FB0E-93A0-4BF8-BDAF-03A1C345C587}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdressBook", "AdressBook\AdressBook.csproj", "{6991FB0E-93A0-4BF8-BDAF-03A1C345C587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdressBook.Tests", "AdressBook.Tests\AdressBook.Tests.csproj", "{155631C8-EE22-4756-B4EB-28A46815D063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6991FB0E-93A0-4BF8-BDAF-03A1C345C587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6991FB0E-93A0-4BF8-BDAF-03A1C345C587}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6991FB0E-93A0-4BF8-BDAF-03A1C345C587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{155631C8-EE22-4756-B4EB-28A46815D063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155631C8-EE22-4756-B4EB-28A46815D063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155631C8-EE22-4756-B4EB-28A46815D063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155631C8-EE22-4756-B4EB-28A46815D063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -98,15 +98,4 @@ public class ContactBookServices : IContactBookServices
         catch (Exception ex) { Debug.WriteLine("ContactBookServices - GetContactPersonByEmail::" + ex.Message); }
         return null!; 
     }
-
-
-    public bool UpdateContactList(IEnumerable<IContactPerson> contactPersons)
-    {
-        try
-        {
-            return true;
-        }
-        catch (Exception ex) { Debug.WriteLine("ContactBookServices - UpdateContactList::" + ex.Message); }
-        return false;
-    }
 }

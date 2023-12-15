@@ -23,8 +23,6 @@ public interface IContactBookServices
     /// </summary>
     /// <returns>if list is not null or empty return list of contacts, else returns null if false</returns>
     /// 
-    bool UpdateContactList(IEnumerable<IContactPerson> contactPersons);
-
     
     bool DeleteContactFromList(string email);
     /// <summary>
