@@ -11,6 +11,17 @@ public class ContactBookServices : IContactBookServices
     private static List<ContactPerson> _contacts = [];
     private readonly IFileServices _fileServices = new FileServices();
     private readonly string _filePath = @"C:\CsharpProjects\Assignment\AdressBook.json";
+
+    public ContactBookServices(IFileServices fileServices)
+    {
+        _fileServices = fileServices;
+    }
+
+    public ContactBookServices() 
+    {
+        _fileServices = new FileServices();
+    }
+
     //sätt sökväg här för att säkerställa att när du använder dig av _filePath så kommer det alltid att bli samma i resterande kod. 
     //går att ha flera olika sökvägar om man har olika objekt som ska sparas in i separata listor. 
 
