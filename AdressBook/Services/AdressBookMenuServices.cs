@@ -5,7 +5,7 @@ namespace AdressBook.Services;
 public class AdressBookMenuServices
 {
     private readonly IContactBookServices _contactBookServices = new ContactBookServices();
-  
+
 
     public void ShowMainMenu()
     {

@@ -12,17 +12,18 @@ public class ContactBookServices_Tests
     [Fact]
     public void AddContactToList_ShouldAddOneContactToList_ThenReturnTrue()
     {
-     // Arrange: Här skapas alla förberedelser för det vi ska testa
-     // skapa en användare
-        var mockFileService = new Mock<FileServices>();  
-        IContactBookServices contactBookServices = new ContactBookServices(mockFileService.Object);
         ContactPerson person = new ContactPerson();
+        // Arrange: Här skapas alla förberedelser för det vi ska testa
+        // skapa en användare
+        var mockFileService = new Mock<IFileServices>();  
+        IContactBookServices contactBookServices = new ContactBookServices(mockFileService.Object);
         // Act: Här är det vi ska göra, alltså lägga till en person
         bool result = contactBookServices.AddContactToList(person);
 
      // Assert: vad väntar vi oss att få för resultat, kan göra flera olika 
      // jämförelser för att se om testet har lyckats eller inte
         Assert.True(result);
+       
     }
 
     [Fact]

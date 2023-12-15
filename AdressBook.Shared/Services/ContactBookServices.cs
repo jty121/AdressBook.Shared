@@ -8,19 +8,23 @@ namespace AdressBook.Shared.Services;
 public class ContactBookServices : IContactBookServices
 {
 
+    private readonly IFileServices _fileServices;
     private static List<ContactPerson> _contacts = [];
-    private readonly IFileServices _fileServices = new FileServices();
     private readonly string _filePath = @"C:\CsharpProjects\Assignment\AdressBook.json";
+
+    public ContactBookServices()
+    {
+        _fileServices = new FileServices();
+    }
 
     public ContactBookServices(IFileServices fileServices)
     {
         _fileServices = fileServices;
+        
     }
 
-    public ContactBookServices() 
-    {
-        _fileServices = new FileServices();
-    }
+
+
 
     //sätt sökväg här för att säkerställa att när du använder dig av _filePath så kommer det alltid att bli samma i resterande kod. 
     //går att ha flera olika sökvägar om man har olika objekt som ska sparas in i separata listor. 
@@ -33,12 +37,9 @@ public class ContactBookServices : IContactBookServices
             {
                 _contacts.Add(contactPerson);
 
-                string json = JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.All,
-                });
-                var result = _fileServices.SaveContactsToFile(_filePath, json);
-                return result;
+                string json = JsonConvert.SerializeObject(_contacts);
+                 _fileServices.SaveContactsToFile(_filePath, json);
+                return true;
             }
 
         }
@@ -56,10 +57,7 @@ public class ContactBookServices : IContactBookServices
             if (contactToDelete != null)
                 {
                     _contacts.Remove(contactToDelete);
-                    string json = JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings
-                    {
-                        TypeNameHandling = TypeNameHandling.All,
-                    });
+                    string json = JsonConvert.SerializeObject(_contacts);  
                     var result = _fileServices.SaveContactsToFile(_filePath, json);
                     return result;
                 // return result ger tillbaka den uppdaterade listan OM kontakten tagits bort
