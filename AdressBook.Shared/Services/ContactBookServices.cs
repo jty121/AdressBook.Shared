@@ -11,6 +11,8 @@ public class ContactBookServices : IContactBookServices
     private readonly IFileServices _fileServices;
     private static List<ContactPerson> _contacts = [];
     private readonly string _filePath = @"C:\CsharpProjects\Assignment\AdressBook.json";
+    //sätt sökväg här för att säkerställa att när du använder dig av _filePath så kommer det alltid att bli samma i resterande kod. 
+    //går att ha flera olika sökvägar om man har olika objekt som ska sparas in i separata listor. 
 
     public ContactBookServices()
     {
@@ -23,11 +25,6 @@ public class ContactBookServices : IContactBookServices
         
     }
 
-
-
-
-    //sätt sökväg här för att säkerställa att när du använder dig av _filePath så kommer det alltid att bli samma i resterande kod. 
-    //går att ha flera olika sökvägar om man har olika objekt som ska sparas in i separata listor. 
 
     public bool AddContactToList(ContactPerson contactPerson)
     {
@@ -100,7 +97,7 @@ public class ContactBookServices : IContactBookServices
                 {
                     _contacts = JsonConvert.DeserializeObject<List<ContactPerson>>(contact)!;
                     return contactToFind;
-                    //om man inte har en lista som är av ett Interface, behövs inte settings delen och typenamehandling? 
+                    //om man inte har en lista som är av ett Interface, behövs inte settings delen och typenamehandling 
                     //Json kan inte hantera Interfaces 
                 }
             }

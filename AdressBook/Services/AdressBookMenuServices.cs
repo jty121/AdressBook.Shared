@@ -49,7 +49,7 @@ public class AdressBookMenuServices
     
     private void AddContact()
     {
-        //instansiering av ny person från klassen ContactPerson, ger tillgång till properties för att lagra värden i variabeln contactPerson. 
+        //instansiering av person från klassen ContactPerson, ger tillgång till properties för att lagra värden i variabeln contactPerson. 
         ContactPerson contactPerson = new ContactPerson();
 
         MenuTitle("*** Add a contact to your address book ***");

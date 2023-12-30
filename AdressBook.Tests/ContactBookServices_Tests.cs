@@ -14,15 +14,16 @@ public class ContactBookServices_Tests
     {
         ContactPerson person = new ContactPerson();
         // Arrange: Här skapas alla förberedelser för det vi ska testa
-        // skapa en användare
+        // ex skapa en användare
         var mockFileService = new Mock<IFileServices>();  
         IContactBookServices contactBookServices = new ContactBookServices(mockFileService.Object);
-        // Act: Här är det vi ska göra, alltså lägga till en person
+        // Act: Här är det vi vill göra, alltså lägga till en person
         bool result = contactBookServices.AddContactToList(person);
 
-     // Assert: vad väntar vi oss att få för resultat, kan göra flera olika 
-     // jämförelser för att se om testet har lyckats eller inte
+        // Assert: vad väntar vi oss att få för resultat, kan göra flera olika 
+        // jämförelser för att se om testet har lyckats eller inte
         Assert.True(result);
+        
        
     }
 
